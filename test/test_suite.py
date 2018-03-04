@@ -12,8 +12,7 @@ assert_equal.__self__.maxDiff = None
 
 
 def test_mf2tests():
-    allfiles = glob.glob(
-        os.path.join('.', 'testsuite', 'tests', '*', '*', '*.json'))
+    allfiles = glob.glob(os.path.join('..', 'mf2tests', 'tests', '*', '*', '*.json'))
     for jsonfile in allfiles:
         htmlfile = jsonfile[:-4] + 'html'
         with open(htmlfile) as f:
