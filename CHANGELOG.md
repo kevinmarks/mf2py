@@ -1,6 +1,63 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.1.2 - 2018-08-08
+- add parsing for iframe.u-*[src] (#116)
+- bug fix: reduced implied urls (#117)
+- bug fix: don't collapse whitespace between tags
+- specify explicit versions for dependencies
+- revert BeautifulSoup copying added in 1.1.1 due to bugs (eg #108)
+- misc performance improvements
+
+## 1.1.1 - 2018-06-15
+
+- streamline backcompat to use JSON only.
+- fix multiple mf1 root rel-tag parsing 
+- correct url and photo for hreview.
+- add rules for nested hreview. update backcompat to use multiple matches in old properties.
+- fix `rel-tag` to `p-category` conversion so that other classes are not lost.
+- use original authored html for `e-*` parsing in backcompat
+- make classes and rels into unordered (alphabetically ordered) deduped arrays.
+- only use class names for mf2 which follow the naming rules
+- fix `parse` method to use default html parser.
+- always use the first value for attributes for rels.
+- correct AM/PM conversion in datetime value class pattern.
+ - add ordinal date parsing to datetimes value class pattern. ordinal date is normalised to YYYY-MM-DD
+- remove hack for html tag classes since that is fixed in new BS
+- better whitespace algorithm for `name` and `html.value` parsing
+- experimental flag for including `alt` in `u-photo` parsing
+- make a copy of the BeautifulSoup given by user to work on for parsing to prevent changes to original doc
+- bump version to 1.1.1 
+
+## 1.1.0 - 2018-03-16
+
+- bump version to 1.1.0 since it is a "major" change 
+- added tests for new implied name rules
+- modified earlier tests to accommodate new rules
+- use space separator instead of "T"
+- Don't add "00" seconds unless authored
+- use TZ authored in separate `value` element
+- only use first found `value` of a particular type `date`, `time`, or `timezone`.
+- move backcompat rules into JSON files
+- reorganise value class pattern parsing into new files
+- add datetime_helpers to organise datetime parsing rules
+- reorganise tests
+- remove Heroku frontend, point to mf2py-web and python.microformats.io instead in README.
+- remove Flask and gunicorn requirements
+- add debug info with description, version, url and the html parser used 
+
+## 1.0.6 - 2018-03-04
+
+- strip leading/trailing white space for `e-*[html]`. update the corresponding tests
+- blank values explicitly authored are allowed as property values 
+- include `alt` or `src` from `<img>` in parsing for `p-*` and `e-*[value]`
+- parse `title` from `<link>` for `p-*` resolves #84 
+- and `poster` from `<video>` for `u-*` resolves #76 
+- use `html5lib` as default parser
+- use the final redirect URL resolves #62 
+- update requirements to use BS4 v4.6.0 and html5lib v1.0.1
+- drop support for Python 2.6 as html5lib dropped support
+
 ## 1.0.5 - 2016-05-09
 
 - Implied property checks now ignore alt="", treating it the same as
