@@ -12,7 +12,7 @@ assert_equal.__self__.maxDiff = None
 
 
 def test_mf2tests():
-    allfiles = glob.glob(os.path.join('..', 'mf2tests', 'tests', '*', '*', '*.json'))
+    allfiles = glob.glob(os.path.join('..', 'mf2tests', 'tests', 'microformats-v2', 'h-card', '*.json'))
     for jsonfile in allfiles:
         htmlfile = jsonfile[:-4] + 'html'
         with open(htmlfile) as f:
@@ -28,4 +28,6 @@ def test_mf2tests():
 
 def check_mf2(htmlfile, p, s):
     # TODO ignore extra keys in p that are not in s
+    #remove debug key for now
+    p.pop('debug',None)
     assert_equal(p, s)
